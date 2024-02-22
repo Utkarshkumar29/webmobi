@@ -55,6 +55,18 @@ const HomePage=()=>{
         setImageArray(updatedImageArray)
     }
 
+    const handleTouchStart=(index)=>{
+        dragImage.current=index
+    }
+    
+    const handleTouchMove=(index)=>{
+        draggedOverImage.current = index
+    }
+    
+    const handleTouchEnd=()=>{
+        handleSort()
+    }
+
     return(
         <HomePageContainer>
             <HomePageWrapper>
@@ -79,6 +91,9 @@ const HomePage=()=>{
                                 onDragEnter={()=>draggedOverImage.current=index}
                                 onDragEnd={handleSort}
                                 onDragOver={e=>e.preventDefault()}  
+                                onTouchStart={() => handleTouchStart(index)}
+                                onTouchMove={() => handleTouchMove(index)}
+                                onTouchEnd={handleTouchEnd}
                                 style={
                                     wrapperStyle
                                 } 
