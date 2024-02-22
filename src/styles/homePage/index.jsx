@@ -88,12 +88,19 @@ export const DeleteIcon=styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
     cursor: pointer;
     border-radius: 100%;
     transition: background-color 0.3s ease-in-out;
+    border: 2px solid black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
-        background-color: rgba(255, 0, 0, 0.8);
+        color: red;
     }
 `

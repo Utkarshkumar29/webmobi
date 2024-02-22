@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const HomePage=()=>{
-    const [imageArray,setImageArray]=useState([
+    const defaultImages=[
         {id:1,src:Image1},
         {id:2,src:Image2},
         {id:3,src:Image3},
@@ -21,9 +21,15 @@ const HomePage=()=>{
         {id:6,src:Image6},
         {id:7,src:Image7},
         {id:8,src:Image8}
-    ])
+    ]
+
+    const [imageArray,setImageArray]=useState(()=>{
+        const savedLayout=localStorage.getItem("imageArray")
+        return savedLayout ? JSON.parse(savedLayout) : defaultImages
+    })
     const dragImage=useRef(0)
     const draggedOverImage=useRef(0)
+
 
     const handleUpload=(e)=>{
         const file= e.target.files[0];
@@ -49,7 +55,6 @@ const HomePage=()=>{
 
     const handleDelete=(id)=>{
         const updatedImageArray=imageArray.filter((image)=>image.id!==id)
-        console.log(updatedImageArray)
         setImageArray(updatedImageArray)
     }
 
@@ -65,12 +70,9 @@ const HomePage=()=>{
         handleSort()
     }
 
-    useEffect(() => {
-        const savedLayout=localStorage.getItem("imageArray")
-        if(savedLayout){
-            setImageArray(JSON.parse(savedLayout))
-        }
-    },[])
+    useEffect(()=>{
+        localStorage.setItem("imageArray",JSON.stringify(imageArray))
+    },[imageArray])
 
     return(
         <HomePageContainer>
