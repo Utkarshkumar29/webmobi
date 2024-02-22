@@ -56,6 +56,10 @@ export const InputWrapper=styled.div`
     transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px; 
 
+    @media (max-width:426px) {
+        text-align: center;
+    }
+
     p {
         margin-bottom: 10px;
         font-size: 16px;
