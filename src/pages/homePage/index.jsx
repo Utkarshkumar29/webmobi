@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import Image1 from "../../assets/001.png"
-import Image2 from "../../assets/002.png"
+import Image6 from "../../assets/002.png"
 import Image3 from "../../assets/003.png"
 import Image4 from "../../assets/004.png"
 import Image5 from "../../assets/005.png"
-import Image6 from "../../assets/006.png"
+import Image2 from "../../assets/006.png"
 import Image7 from "../../assets/007.png"
 import Image8 from "../../assets/008.png"
 import { DeleteIcon, HomePageContainer, HomePageWrapper, Image, ImageContainer, ImageWrapper, Input, InputWrapper } from "../../styles/homePage";
@@ -22,6 +22,7 @@ const HomePage=()=>{
         {id:7,src:Image7},
         {id:8,src:Image8}
     ])
+    const [uploaded,setUploaded]=useState('')
     const dragImage=useRef(0)
     const draggedOverImage=useRef(0)
 
@@ -34,6 +35,7 @@ const HomePage=()=>{
                     {id:prev+1,src:reader.result},
                     ...prev
                 ])
+                setUploaded({src:reader.result})
             }
             reader.readAsDataURL(file)
         }
@@ -57,6 +59,7 @@ const HomePage=()=>{
         <HomePageContainer>
             <HomePageWrapper>
                 <InputWrapper>
+                    <p>Drag & drop your images here or click to browse</p>
                     <Input type="file" onChange={handleUpload}/>
                 </InputWrapper>
                 <ImageContainer>
