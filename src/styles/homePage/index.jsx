@@ -4,7 +4,6 @@ export const HomePageContainer=styled.div`
     max-width: 2600px;
     width: 100%;
     height: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +13,10 @@ export const HomePageWrapper=styled.div`
     width: 100%;
     height: 100%;
     padding: 20px;
+
+    @media (max-width:426px) {
+        padding: 7px;
+    }
 `
 
 export const ImageContainer=styled.div`

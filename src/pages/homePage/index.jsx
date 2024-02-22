@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image1 from "../../assets/001.png"
 import Image6 from "../../assets/002.png"
 import Image3 from "../../assets/003.png"
@@ -22,7 +22,6 @@ const HomePage=()=>{
         {id:7,src:Image7},
         {id:8,src:Image8}
     ])
-    const [uploaded,setUploaded]=useState('')
     const dragImage=useRef(0)
     const draggedOverImage=useRef(0)
 
@@ -35,7 +34,6 @@ const HomePage=()=>{
                     {id:prev+1,src:reader.result},
                     ...prev
                 ])
-                setUploaded({src:reader.result})
             }
             reader.readAsDataURL(file)
         }
@@ -66,6 +64,13 @@ const HomePage=()=>{
     const handleTouchEnd=()=>{
         handleSort()
     }
+
+    useEffect(() => {
+        const savedLayout=localStorage.getItem("imageArray")
+        if(savedLayout){
+            setImageArray(JSON.parse(savedLayout))
+        }
+    },[])
 
     return(
         <HomePageContainer>
